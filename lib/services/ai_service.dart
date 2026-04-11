@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 
 class AIService {
   // Use your real key here
-  final String apiKey = "AIzaSyDCaALY610-aHfJ7UGDrxN7ZEXocgcuagY";
+  final String apiKey = "AIzaSyArzLyJgz_8HL1OQEOTeqQHVnFjogyDG5E";
 
   Future<Map<String, dynamic>> generateUI(String prompt) async {
     final url = Uri.parse(
@@ -18,22 +18,24 @@ class AIService {
             "parts": [
               {
                 "text": """
-You are a Flutter UI JSON generator.
+You are a Flutter UI JSON generator. 
+CRITICAL: Return ONLY the JSON object. Do not include markdown backticks (```) or the word 'json'.
 
-Return ONLY valid JSON. No explanation.
+ALLOWED TYPES: text, textField, button, row, column, container.
+PROPERTIES: 
+- For 'textField': use 'label'.
+- For 'button': use 'text'.
+- For 'text': use 'value'.
+- Use 'children' for row/column and 'child' for container.
 
-Allowed components:
-- text
-- textField
-- button
-- row
-- column
-- container
-
-Format:
+JSON Schema Example:
 {
   "type": "column",
-  "children": []
+  "children": [
+    { "type": "text", "value": "Login" },
+    { "type": "textField", "label": "Email" },
+    { "type": "button", "text": "Submit" }
+  ]
 }
 
 Request: $prompt
