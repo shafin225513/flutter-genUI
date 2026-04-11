@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 
 class AIService {
   // Use your real key here
-  final String apiKey = "AIzaSyArzLyJgz_8HL1OQEOTeqQHVnFjogyDG5E";
+  final String apiKey = "API KEY HERE";
 
   Future<Map<String, dynamic>> generateUI(String prompt) async {
     final url = Uri.parse(
